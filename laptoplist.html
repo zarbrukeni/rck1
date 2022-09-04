@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>laptop list</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="/styles/styles.css">
+</head>
+
+<body>
+  <div>
+    <a href="index.html"><button class="landing-btn-back"><</button></a>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+    <h2>ჩანაწერების სია</h2>
+  </div>
+
+    <div class="container">
+      <div id="main_container"  style="display: flex;justify-content: center;flex-wrap: wrap; margin-top: 60px;">
+
+      <div>
+    </div>
+
+
+    <script>
+
+        var config = {
+          method: 'get',
+          url: 'https://pcfy.redberryinternship.ge/api/laptops?token=2235a4f98ee5eb51f21236c4115bd52b\n',
+        };
+
+        axios(config)
+        .then(function (response) {
+            
+          response.data.data.forEach(element => {
+            $("#main_container").append('<div class="laptop-card"><div><img style="max-width:150px;" src="https://pcfy.redberryinternship.ge/'+ element.laptop.image +'" alt="laptop-image" class="card-image"></div><div><h4>'+element.user.name+' '+element.user.surname +'</h4><p>'+element.laptop.name+'</p><a href="laptopdetails.html#'+element.laptop.id+'" data-laptop-id="'+element.laptop.id+'" style="color: #4386A9;" >დეტალურად</a></div></div>');
+            console.log(element);
+          });
+
+          
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+
+    </script>
+
+</body>
+</html>
